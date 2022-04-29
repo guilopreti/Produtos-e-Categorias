@@ -9,7 +9,7 @@ const createProductService = async ({ name, price, category_id }) => {
 
     const [product] = res.rows;
 
-    return product;
+    return { message: "Product created", product };
   } catch (err) {
     throw new Error(err);
   }

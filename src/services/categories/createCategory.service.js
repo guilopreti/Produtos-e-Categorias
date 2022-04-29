@@ -9,7 +9,7 @@ const createCategoryService = async (name) => {
 
     const [category] = res.rows;
 
-    return category;
+    return { message: "Category created", category };
   } catch (err) {
     throw new Error(err);
   }

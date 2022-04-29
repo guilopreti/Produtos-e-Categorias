@@ -10,7 +10,10 @@ const verifyExistCategoryMiddleware = async (request, response, next) => {
     );
 
     if (res.rows.length) {
-      return response.status(400).json({ message: "Category already exist" });
+      const [category] = res.rows;
+      return response
+        .status(400)
+        .json({ message: "Category already exist", category });
     }
 
     next();
