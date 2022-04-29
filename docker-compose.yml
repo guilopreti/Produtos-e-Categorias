@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  api:
+    container_name: entreg_prodcat
+    image: categ_prodts
+    build: .
+    ports:
+      - 3333:3333
+    depends_on:
+      - db
+    environment:
+      - DB_USER=postgres
+      - DB_HOST=db_prodcat
+      - DB=db_prodcat
+      - DB_PASSWORD=123456
+      - DB_PORT=5432
+  db:
+    container_name: db_prodcat
+    image: postgres
+    ports:
+      - 5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=db_prodcat
+    volumes:
+      - ./create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
