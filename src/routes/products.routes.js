@@ -12,10 +12,10 @@ const router = Router();
 router.post("", verifyProductBodyMiddleware, productsController.store);
 router.get("", productsController.index);
 
-router.get("/:id", verifyProductIdMiddleware);
+router.get("/:id", verifyProductIdMiddleware, productsController.show);
 router.patch("/:id", verifyProductIdMiddleware, productsController.update);
-router.delete("/:id", verifyProductIdMiddleware);
+router.delete("/:id", verifyProductIdMiddleware, productsController.delete);
 
-router.get("/category/:category_id");
+router.get("/category/:category_id", productsController.indexProductsCategory);
 
 export default router;
