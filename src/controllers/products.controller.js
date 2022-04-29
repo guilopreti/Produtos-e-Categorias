@@ -1,5 +1,6 @@
 import createProductService from "../services/products/createProduct.service";
 import listProductsService from "../services/products/listProducts.service";
+import updateProductService from "../services/products/updateProduct.service";
 
 class ProductsController {
   async store(request, response) {
@@ -26,7 +27,23 @@ class ProductsController {
 
   async show(request, response) {}
 
-  async update(request, response) {}
+  async update(request, response) {
+    const { name, price, category_id } = request.body;
+    const { id } = request.params;
+
+    try {
+      const updated = await updateProductService({
+        id,
+        name,
+        price,
+        category_id,
+      });
+
+      return response.json(updated);
+    } catch (err) {
+      return response.status(500).json(err.message);
+    }
+  }
 
   async delete(request, response) {}
 }
