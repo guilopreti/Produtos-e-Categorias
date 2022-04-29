@@ -1,9 +1,15 @@
 import { Router } from "express";
 
+import ProductsController from "../controllers/products.controller";
+
+import verifyProductBodyMiddleware from "../middlewares/verifyProductBody.middleware";
+
+const productsController = new ProductsController();
+
 const router = Router();
 
-router.post("");
-router.get("");
+router.post("", verifyProductBodyMiddleware, productsController.store);
+router.get("", productsController.index);
 
 router.get("/:id");
 router.patch("/:id");
