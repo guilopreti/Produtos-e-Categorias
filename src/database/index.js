@@ -9,6 +9,13 @@ const database = new Client(
         password: "123456",
         port: 5432,
       }
+    : process.env.NODE_ENV === "production"
+    ? {
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+          rejectUnauthorized: false,
+        },
+      }
     : {
         user: process.env.DB_USER,
         host: process.env.DB_HOST,

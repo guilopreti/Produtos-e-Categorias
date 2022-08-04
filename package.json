@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon --exec sucrase-node ./src/app.js",
-    "test": "cross-env NODE_ENV=test jest"
+    "test": "cross-env NODE_ENV=test jest",
+    "start": "sucrase-node ./src/app.js"
   },
   "dependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.17.9",
